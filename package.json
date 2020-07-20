@@ -1,0 +1,17 @@
+{
+  "name": "parser",
+  "version": "1.0.0",
+  "main": "app.js",
+  "author": "dmytro hryb <dmytro.hryb@nure.ua>",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon app"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "cheerio": "^1.0.0-rc.3",
+    "express": "^4.17.1",
+    "sqlite3": "^5.0.0"
+  },
+  "devDependencies": {}
+}
