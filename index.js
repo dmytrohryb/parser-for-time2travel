@@ -43,19 +43,20 @@ app.listen(port, () => {
     console.log(port)
 });
 
-app.get("/", function (request, response) {
-    db.all(`select * from tours`, (err, rows ) => {
-        response.send(rows);
-    });
-})
-
 app.post("/", function(request, response){
-
+    if(request.body.date !== '' && request.body.duration === 0 && request.body.min === '' && request.body.max === ''){
         db.all(`SELECT * from tours WHERE date = ? LIMIT 15`, [request.body.date], (err, rows ) => {
             console.log(request.body)
             console.log(rows)
             response.send(rows);
         });
-    
+    }
+    else{
+        db.all(`select * from tours`, (err, rows ) => {
+            response.send(rows);
+        });
+    }
+
+
     console.log('end post query')
 });
