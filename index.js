@@ -52,7 +52,7 @@ app.get("/", function (request, response) {
 app.post("/", function(request, response){
     if(request.body.date){
         db.all(`SELECT * from tours WHERE date = ${request.body.date} LIMIT 15`, (err, rows ) => {
-            console.log('test')
+            console.log(request.body)
             response.send(rows);
         });
     }
