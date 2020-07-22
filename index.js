@@ -43,8 +43,13 @@ app.listen(port, () => {
     console.log(port)
 });
 
-app.post("/", function(request, response){
-    console.log(request.body)
+app.get("/", function (request, response) {
+    db.all(`select * from tours`, (err, rows ) => {
+        response.send(rows);
+    });
+})
+
+/*app.get("/", function(request, response){
     if(request.body.date && request.body.duration && request.body.cost){
         db.all(`SELECT * from tours WHERE date = ${request.body.date} AND duration = ${request.body.duration} AND price > ${request.body.cost.min} AND price < ${request.body.cost.max} LIMIT 15 OFFSET`, (err, rows ) => {
             console.log('test')
@@ -52,4 +57,4 @@ app.post("/", function(request, response){
         });
     }
     console.log('end post query')
-});
+});*/
