@@ -44,7 +44,7 @@ app.listen(port, () => {
 });
 
 app.get("/", function(request, response){
-    db.all('SELECT * from tours', (err, rows ) => {
+    db.all('SELECT * from tours LIMIT 15', (err, rows ) => {
         console.log('test')
         response.send(rows);
     });
