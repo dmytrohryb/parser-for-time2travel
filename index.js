@@ -53,22 +53,22 @@ app.post("/", function(request, response){
                 response.send(rows);
             });
         }else if(duration === 0 && cost.min === '' && cost.max === ''){
-            db.all(`SELECT * from tours WHERE date = ?`, [request.body.date], (err, rows ) => {
+            db.all(`SELECT * from tours WHERE date = ?`, [date], (err, rows ) => {
                 console.log(rows)
                 response.send(rows);
             });
         }else if(duration === 0 && cost.min !== '' && cost.max !== ''){
-            db.all(`SELECT * from tours WHERE date = ? AND price < ? AND price > ?`, [request.body.date, cost.max, cost.min], (err, rows ) => {
+            db.all(`SELECT * from tours WHERE date = ? AND price < ? AND price > ?`, [date, cost.max, cost.min], (err, rows ) => {
                 console.log(rows)
                 response.send(rows);
             });
         }else if(duration === 0 && cost.min === '' && cost.max !== ''){
-            db.all(`SELECT * from tours WHERE date = ? AND price < ?`, [request.body.date, cost.max], (err, rows ) => {
+            db.all(`SELECT * from tours WHERE date = ? AND price < ?`, [date, cost.max], (err, rows ) => {
                 console.log(rows)
                 response.send(rows);
             });
         }else if(duration === 0 && cost.min !== '' && cost.max === ''){
-            db.all(`SELECT * from tours WHERE date = ? AND price > ?`, [request.body.date, cost.min], (err, rows ) => {
+            db.all(`SELECT * from tours WHERE date = ? AND price > ?`, [date, cost.min], (err, rows ) => {
                 console.log(rows)
                 response.send(rows);
             });
@@ -91,7 +91,7 @@ app.post("/", function(request, response){
 
     }else{
         if(duration !== 0 && cost.min === '' && cost.max === ''){
-            db.all(`SELECT * from tours WHERE duration < ?`, [date, duration], (err, rows ) => {
+            db.all(`SELECT * from tours WHERE duration < ?`, [duration], (err, rows ) => {
                 console.log(rows)
                 response.send(rows);
             });
@@ -100,37 +100,37 @@ app.post("/", function(request, response){
                 response.send(rows);
             });
         }else if(duration === 0 && cost.min !== '' && cost.max !== ''){
-            db.all(`SELECT * from tours WHERE price < ? AND price > ?`, [request.body.date, cost.max, cost.min], (err, rows ) => {
+            db.all(`SELECT * from tours WHERE price < ? AND price > ?`, [cost.max, cost.min], (err, rows ) => {
                 console.log(rows)
                 response.send(rows);
             });
         }else if(duration === 0 && cost.min === '' && cost.max !== ''){
-            db.all(`SELECT * from tours WHERE AND price < ?`, [request.body.date, cost.max], (err, rows ) => {
+            db.all(`SELECT * from tours WHERE AND price < ?`, [cost.max], (err, rows ) => {
                 console.log(rows)
                 response.send(rows);
             });
         }else if(duration === 0 && cost.min !== '' && cost.max === ''){
-            db.all(`SELECT * from tours WHERE price > ?`, [request.body.date, cost.min], (err, rows ) => {
+            db.all(`SELECT * from tours WHERE price > ?`, [cost.min], (err, rows ) => {
                 console.log(rows)
                 response.send(rows);
             });
         }else if(duration !== 0 && cost.min !== '' && cost.max !== ''){
-            db.all(`SELECT * from tours WHERE duration < ? AND price < ? AND price > ?`, [date, duration, cost.max, cost.min], (err, rows ) => {
+            db.all(`SELECT * from tours WHERE duration < ? AND price < ? AND price > ?`, [duration, cost.max, cost.min], (err, rows ) => {
                 console.log(rows)
                 response.send(rows);
             })
         }else if(duration !== 0 && cost.min !== '' && cost.max === ''){
-            db.all(`SELECT * from tours WHERE duration < ? AND price > ?`, [date, duration, cost.min], (err, rows ) => {
+            db.all(`SELECT * from tours WHERE duration < ? AND price > ?`, [duration, cost.min], (err, rows ) => {
                 console.log(rows)
                 response.send(rows);
             })
         }else if(duration !== 0 && cost.min === '' && cost.max !== ''){
-            db.all(`SELECT * from tours WHERE duration < ? AND price < ?`, [date, duration, cost.max], (err, rows ) => {
+            db.all(`SELECT * from tours WHERE duration < ? AND price < ?`, [duration, cost.max], (err, rows ) => {
                 console.log(rows)
                 response.send(rows);
             })
         }
-        
+
     }
 
 
