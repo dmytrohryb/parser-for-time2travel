@@ -1,8 +1,14 @@
 const Parser = require('./src/parser')
 const express = require('express')
 const sqlite3 = require('sqlite3').verbose();
+const cors = require('cors')
+const bodyParser = require('body-parser')
 const port = process.env.PORT || 3000;
 const app = express();
+
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.json())
+app.use(cors())
 
 let db = new sqlite3.Database('./data', sqlite3.OPEN_READWRITE, (err) => {
     if (err) {
@@ -30,7 +36,7 @@ async function getData (){
         })
     }
 
-    console.log('blablabla')
+    console.log('data updated')
 }
 
 app.listen(port, () => {
