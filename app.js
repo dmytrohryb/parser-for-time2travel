@@ -29,6 +29,8 @@ async function getData (){
             }
         })
     }
+
+    console.log('blablabla')
 }
 
 app.listen(3000);
