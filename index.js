@@ -50,12 +50,12 @@ app.get("/", function (request, response) {
 })
 
 app.post("/", function(request, response){
-    if(request.body.date){
-        db.each(`SELECT * from tours WHERE date = ? LIMIT 15`, [request.body.date], (err, rows ) => {
+
+        db.all(`SELECT * from tours WHERE date = ? LIMIT 15`, [request.body.date], (err, rows ) => {
             console.log(request.body)
             console.log(rows)
             response.send(rows);
         });
-    }
+    
     console.log('end post query')
 });
