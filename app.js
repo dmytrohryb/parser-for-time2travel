@@ -33,7 +33,9 @@ async function getData (){
     console.log('blablabla')
 }
 
-app.listen(port);
+app.listen(port, () => {
+    console.log('ok')
+});
 
 app.get("/", function(request, response){
     db.all('SELECT * from tours', (err, rows ) => {
