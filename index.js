@@ -44,8 +44,9 @@ app.listen(port, () => {
 });
 
 app.post("/", function(request, response){
-    if(request.body.date && request.body.duration && request.body.price){
-        db.all(`SELECT * from tours WHERE date = ${request.body.date} AND duration = ${request.body.duration} AND price > ${request.body.price.min} AND price < ${request.body.price.max} LIMIT 15 OFFSET`, (err, rows ) => {
+    console.log(request.body)
+    if(request.body.date && request.body.duration && request.body.cost){
+        db.all(`SELECT * from tours WHERE date = ${request.body.date} AND duration = ${request.body.duration} AND price > ${request.body.cost.min} AND price < ${request.body.cost.max} LIMIT 15 OFFSET`, (err, rows ) => {
             console.log('test')
             response.send(rows);
         });
