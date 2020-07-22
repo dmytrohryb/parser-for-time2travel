@@ -50,4 +50,5 @@ app.post("/", function(request, response){
             response.send(rows);
         });
     }
+    console.log('end post query')
 });
