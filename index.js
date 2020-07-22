@@ -90,9 +90,47 @@ app.post("/", function(request, response){
         }
 
     }else{
-        db.all(`select * from tours`, (err, rows ) => {
-            response.send(rows);
-        });
+        if(duration !== 0 && cost.min === '' && cost.max === ''){
+            db.all(`SELECT * from tours WHERE duration < ?`, [date, duration], (err, rows ) => {
+                console.log(rows)
+                response.send(rows);
+            });
+        }else if(duration === 0 && cost.min === '' && cost.max === ''){
+            db.all(`select * from tours`, (err, rows ) => {
+                response.send(rows);
+            });
+        }else if(duration === 0 && cost.min !== '' && cost.max !== ''){
+            db.all(`SELECT * from tours WHERE price < ? AND price > ?`, [request.body.date, cost.max, cost.min], (err, rows ) => {
+                console.log(rows)
+                response.send(rows);
+            });
+        }else if(duration === 0 && cost.min === '' && cost.max !== ''){
+            db.all(`SELECT * from tours WHERE AND price < ?`, [request.body.date, cost.max], (err, rows ) => {
+                console.log(rows)
+                response.send(rows);
+            });
+        }else if(duration === 0 && cost.min !== '' && cost.max === ''){
+            db.all(`SELECT * from tours WHERE price > ?`, [request.body.date, cost.min], (err, rows ) => {
+                console.log(rows)
+                response.send(rows);
+            });
+        }else if(duration !== 0 && cost.min !== '' && cost.max !== ''){
+            db.all(`SELECT * from tours WHERE duration < ? AND price < ? AND price > ?`, [date, duration, cost.max, cost.min], (err, rows ) => {
+                console.log(rows)
+                response.send(rows);
+            })
+        }else if(duration !== 0 && cost.min !== '' && cost.max === ''){
+            db.all(`SELECT * from tours WHERE duration < ? AND price > ?`, [date, duration, cost.min], (err, rows ) => {
+                console.log(rows)
+                response.send(rows);
+            })
+        }else if(duration !== 0 && cost.min === '' && cost.max !== ''){
+            db.all(`SELECT * from tours WHERE duration < ? AND price < ?`, [date, duration, cost.max], (err, rows ) => {
+                console.log(rows)
+                response.send(rows);
+            })
+        }
+        
     }
 
 
