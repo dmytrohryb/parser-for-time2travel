@@ -1,7 +1,7 @@
 const Parser = require('./src/parser')
 const express = require('express')
 const sqlite3 = require('sqlite3').verbose();
-
+const port = process.env.PORT || 3000;
 const app = express();
 
 let db = new sqlite3.Database('./data', sqlite3.OPEN_READWRITE, (err) => {
@@ -33,7 +33,7 @@ async function getData (){
     console.log('blablabla')
 }
 
-app.listen(3000);
+app.listen(port);
 
 app.get("/", function(request, response){
     db.all('SELECT * from tours', (err, rows ) => {
