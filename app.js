@@ -34,7 +34,7 @@ async function getData (){
 }
 
 app.listen(port, () => {
-    console.log('ok')
+    console.log(port)
 });
 
 app.get("/", function(request, response){
