@@ -50,8 +50,8 @@ app.get("/", function (request, response) {
 })
 
 app.post("/", function(request, response){
-    if(request.body.date && request.body.duration && request.body.cost){
-        db.all(`SELECT * from tours WHERE date = ${request.body.date} AND duration = ${request.body.duration} AND price > ${request.body.cost.min} AND price < ${request.body.cost.max} LIMIT 15 OFFSET`, (err, rows ) => {
+    if(request.body.date){
+        db.all(`SELECT * from tours WHERE date = ${request.body.date} LIMIT 15`, (err, rows ) => {
             console.log('test')
             response.send(rows);
         });
