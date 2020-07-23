@@ -14,10 +14,14 @@ let db = new sqlite3.Database('./data', sqlite3.OPEN_READWRITE, (err) => {
     if (err) {
         console.error(err.message);
     }
+    start()
     console.log('Connected to database.');
 });
 
-setInterval(getData, 10000)
+function start(){
+    getData();
+    setInterval(getData, 1000*60*60*24)
+}
 
 async function getData (){
     let res = await Parser()
@@ -40,13 +44,12 @@ async function getData (){
 }
 
 app.listen(port, () => {
-    console.log(port)
+    console.log('server listen port: ' + port)
 });
 
 app.post("/", function(request, response){
     let {duration, cost, date} = request.body
-    console.log(request.body) // && request.body.duration === '' && request.body.min === '' && request.body.max === '')
-    if(request.body.date !== ''){
+    if(date !== ''){
         if(duration !== 0 && cost.min === '' && cost.max === ''){
             db.all(`SELECT * from tours WHERE date = ? AND duration < ?`, [date, duration], (err, rows ) => {
                 console.log(rows)
@@ -105,7 +108,7 @@ app.post("/", function(request, response){
                 response.send(rows);
             });
         }else if(duration === 0 && cost.min === '' && cost.max !== ''){
-            db.all(`SELECT * from tours WHERE AND price < ?`, [cost.max], (err, rows ) => {
+            db.all(`SELECT * from tours WHERE price < ?`, [cost.max], (err, rows ) => {
                 console.log(rows)
                 response.send(rows);
             });
@@ -132,7 +135,4 @@ app.post("/", function(request, response){
         }
 
     }
-
-
-    console.log('end post query')
 });
