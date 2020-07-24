@@ -40,7 +40,7 @@ async function getData (){
         })
     }
 
-    console.log('data updated')
+    console.log('data updated successful')
 }
 
 app.listen(port, () => {
