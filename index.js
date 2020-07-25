@@ -31,8 +31,8 @@ async function getData (){
         }
     })
     for(let i = 0; i < res.length; i++){
-        db.run('insert into tours(title, date, duration, link, location, price)values(?,?,?,?,?,?)',
-            [res[i].title, res[i].date, res[i].duration, res[i].link, res[i].location, res[i].price],
+        db.run('insert into tours(title, site, date, duration, link, location, price)values(?,?,?,?,?,?,?)',
+            [res[i].title, res[i].site, res[i].date, res[i].duration, res[i].link, res[i].location, res[i].price],
             function (err){
             if(err) {
                 return console.error(err.message)

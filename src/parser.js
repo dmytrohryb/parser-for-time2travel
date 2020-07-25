@@ -11,13 +11,12 @@ let Parser = async function(){
         tempData = await PohodvoryData(cur.data)
         for (let i = 0; i < tempData.length; i++){
             data.push(tempData[i])
-            console.log(tempData[i].site)
         }
         console.log('data from the Pohodvgory site received')
     }catch (err) {
         console.error(err.message)
     }
-
+    console.log(data)
     try {
         console.log('start of receiving data from the site - Kuluarpohod')
         tempData = await KuluarpohodData()
