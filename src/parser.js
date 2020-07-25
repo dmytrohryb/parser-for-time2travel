@@ -11,6 +11,7 @@ let Parser = async function(){
         tempData = await PohodvoryData(cur.data)
         for (let i = 0; i < tempData.length; i++){
             data.push(tempData[i])
+            console.log(tempData[i].site)
         }
         console.log('data from the Pohodvgory site received')
     }catch (err) {
