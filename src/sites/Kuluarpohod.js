@@ -56,6 +56,7 @@ async function getDataKuluarpohod(){
     for (let i = 0; i < routes.length; i++){
         result.push({
             date: durationsAndDate[i].date,
+            site: 'https://kuluarpohod.com',
             title: routes[i].title,
             link: routes[i].link,
             price: routes[i].price,
