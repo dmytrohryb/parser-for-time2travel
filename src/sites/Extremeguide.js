@@ -15,7 +15,8 @@ async function getDataExtremeguide(cur) {
             duration: getDuration($(elem).find('td:nth-child(5)').text()),
             link: URL + $(elem).find('td:nth-child(5) strong a').attr('href'),
             location: $(elem).find('td:nth-child(1)').text(),
-            price: getPriceOnlyNum($(elem).find('td:nth-child(6)').text(), cur)
+            price: getPriceOnlyNum($(elem).find('td:nth-child(6)').text(), cur),
+            site: URL
         })
 
     })
