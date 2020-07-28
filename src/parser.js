@@ -18,7 +18,7 @@ let Parser = async function(){
     }catch (err) {
         console.error(err.message)
     }
-
+    console.log(data)
     try {
         console.log('start of receiving data from the site - Pohodvgory')
         tempData = await PohodvoryData(cur.data)
@@ -29,7 +29,7 @@ let Parser = async function(){
     }catch (err) {
         console.error(err.message)
     }
-    console.log(data)
+
     try {
         console.log('start of receiving data from the site - Kuluarpohod')
         tempData = await KuluarpohodData()

@@ -8,7 +8,7 @@ async function getDataExtremeguide(cur) {
     const tempData = []
     const response = await axios.get(URL + SHEDULE)
     const $ = cheerio.load(response.data)
-    $('table tr').each((i, elem) => {
+    $('table tbody tr').each((i, elem) => {
         tempData.push({
             date: $(elem).find('td:nth-child(3)').text(),
             title: getTitle($(elem).find('td:nth-child(5)').text()),
