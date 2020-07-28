@@ -25,8 +25,7 @@ let getDataPohodvgory = async function(cur){
 let getPriceOnlyNum = (price, cur) => {
     let currency = ''
     let _price = ''
-
-    if(price.match(/\$/g)) {
+     if(price.match(/\$/g)) {
         currency = 'USD'
     }else if(price.match(/€/g)){
         currency = 'EUR'
