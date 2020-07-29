@@ -9,13 +9,14 @@ async function getDataExtremeguide(cur) {
     const response = await axios.get(URL + SHEDULE)
     const $ = cheerio.load(response.data)
     $('table tbody tr').each((i, elem) => {
+
         tempData.push({
             date: $(elem).find('td:nth-child(3)').text(),
             title: getTitle($(elem).find('td:nth-child(5)').text()),
             duration: getDuration($(elem).find('td:nth-child(5)').text()),
             link: URL + $(elem).find('td:nth-child(5) strong a').attr('href'),
             location: $(elem).find('td:nth-child(1)').text(),
-            price: getPriceOnlyNum($(elem).find('td:nth-child(6)').text(), cur),
+            price: getPriceOnlyNum($(elem).find('td:nth-child(6)').text().replace(/\s/g, ''), cur),
             site: URL
         })
 
@@ -89,13 +90,17 @@ let getPriceOnlyNum = (price, cur) => {
             break
         }
     }
-
+    console.log(price)
+    console.log(_price)
     switch (currency) {
         case "USD":
+            console.log(Math.round(_price * cur[0].sale))
             return Math.round(_price * cur[0].sale)
         case "EUR":
+            console.log(Math.round(_price * cur[1].sale))
             return Math.round(_price * cur[1].sale)
         case "RUR":
+            console.log(Math.round(_price * cur[2].sale))
             return Math.round(_price * cur[2].sale)
     }
 
