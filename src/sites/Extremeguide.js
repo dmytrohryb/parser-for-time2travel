@@ -90,17 +90,16 @@ let getPriceOnlyNum = (price, cur) => {
             break
         }
     }
-    console.log(price)
-    console.log(_price)
+
     switch (currency) {
         case "USD":
-            console.log(Math.round(_price * cur[0].sale))
+
             return Math.round(_price * cur[0].sale)
         case "EUR":
-            console.log(Math.round(_price * cur[1].sale))
+
             return Math.round(_price * cur[1].sale)
         case "RUR":
-            console.log(Math.round(_price * cur[2].sale))
+
             return Math.round(_price * cur[2].sale)
     }
 
