@@ -20,12 +20,13 @@ async function getDataMarshrutclub(cur) {
                 link: URL + $(elem).find('td:nth-child(3) div b a').attr('href'),
                 duration: getDuration($(elem).find('td:nth-child(3) span.t_list_tl').text()),
                 location: $(elem).find('td:nth-child(2)').text(),
-                price: getPriceOnlyNum($(elem).find('td:nth-child(3) div.cal_right_bl span.cal_d_t span.prbl_new_price').text(), cur),
+                price: getPriceOnlyNum($(elem).find('td:nth-child(3) div.cal_right_bl span.prbl_new_price').text(), cur),
                 site: URL
             })
         }
 
     })
+
     return tempData
 }
 
@@ -134,8 +135,6 @@ let getPriceOnlyNum = (price, cur) => {
     for (let i = 0; i < price.length; i++){
         if(Number.isInteger(parseInt(price[i]))){
             _price += price[i]
-        }else{
-            break
         }
     }
 
