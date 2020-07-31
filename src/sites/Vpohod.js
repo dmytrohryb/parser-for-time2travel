@@ -106,21 +106,29 @@ async function getData2(url) {
     let count = 0
     const response = await axios.get(url)
     const $ = cheerio.load(response.data)
-    console.log($('div.elementor-text-editor p:nth-child(2)').text())
+    let durations = []
+
+    $('div.elementor-text-editor p').each((i, elem) => {
+        if($(elem).find('span').text().match(/Продолжительность/g)){
+            durations = getDurationOnlyNum($(elem).find('span').text().substr(19, $(elem).find('span').text().length))
+        }
+    })
+
+
     $('table tr').each((i, elem) => {
         count = getCountMonth(getOnlyDate($(elem).find('td:nth-child(1)').text()))
         if(count === 1){
 
             tempData.push({
                 date: getOnlyDayNumber(getOnlyDate($(elem).find('td:nth-child(1)').text())) + parseDate(getOnlyDate($(elem).find('td:nth-child(1)').text()), true),
-                duration: $('div.elementor-widget-container div.elementor-text-editor p:nth-child(2) span').text()
+                duration: durations
             })
         }
         if(count === 2){
 
             tempData.push({
                 date: getOnlyDayNumber(getOnlyDate($(elem).find('td:nth-child(1)').text())) + parseDate(getOnlyDate($(elem).find('td:nth-child(1)').text()), false),
-                duration: $('div.elementor-text-editor p:nth-child(2) span').text()
+                duration: durations
             })
         }
     })
@@ -128,7 +136,18 @@ async function getData2(url) {
     return tempData
 
 }
+let getDurationOnlyNum = (duration) => {
+    let _duration = ''
+    for (let i = 0; i < duration.length; i++){
+        if(Number.isInteger(parseInt(duration[i]))){
+            _duration += duration[i]
+        }else{
+            break
+        }
+    }
 
+    return _duration
+}
 async function getList(url, cur){
     let tempData = []
     const response = await axios.get(url)
@@ -150,9 +169,8 @@ async function getList(url, cur){
     return tempData
 }
 
-async function getDataVpohod() {
-    let cur = await axios.get('https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5')
-    let tempList = await getList(URL + SHEDULE, cur.data)
+async function getDataVpohod(cur) {
+    let tempList = await getList(URL + SHEDULE, cur)
 
     let tempData = []
     for (let i = 0; i < tempList.length; i++){
@@ -170,12 +188,12 @@ async function getDataVpohod() {
             })
         }
     }
-    //console.log(tempData)
+    return tempData
 
 }
 
 
-getDataVpohod().then(res=>console.log(res)).catch(err=>console.error(err.message))
+module.exports = getDataVpohod
 
 let getPriceOnlyNum = (price, cur) => {
     let currency = ''
