@@ -5,13 +5,23 @@ const ExtremeguideData = require('./sites/Extremeguide')
 const MarshrutclubData = require('./sites/Marshrutclub')
 const GreentravelData = require('./sites/Greentravel')
 const VpohodData = require('./sites/Vpohod')
+const ProydisvitData = require('./sites/Proydisvit')
 
 let Parser = async function(){
     const data = []
     let tempData = []
     let cur = await axios.get('https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5')
 
-
+    try {
+        console.log('start of receiving data from the site - Proydisvit')
+        tempData = await ProydisvitData(cur.data)
+        for (let i = 0; i < tempData.length; i++){
+            data.push(tempData[i])
+        }
+        console.log('data from the Proydisvit site received')
+    }catch (err) {
+        console.error(err.message)
+    }
 
     try {
         console.log('start of receiving data from the site - Vpohod')
