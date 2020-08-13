@@ -24,7 +24,7 @@ function start(){
 }
 
 async function getData (){
-    let res = await Parser()
+    let res = await Parser(1)
     db.run('delete from tours', function (err){
         if(err){
             return console.error(err.message)

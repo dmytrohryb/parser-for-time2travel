@@ -11,6 +11,8 @@ let Parser = async function(){
     let tempData = []
     let cur = await axios.get('https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5')
 
+
+
     try {
         console.log('start of receiving data from the site - Vpohod')
         tempData = await VpohodData(cur.data)

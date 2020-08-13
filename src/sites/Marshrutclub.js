@@ -117,7 +117,6 @@ function parseDay(str){
     }else{
         return '0' + day
     }
-
 }
 
 let getPriceOnlyNum = (price, cur) => {
