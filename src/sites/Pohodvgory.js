@@ -11,7 +11,7 @@ let getDataPohodvgory = async function(cur){
     $('div.date-pohods-wrapper div.date_pohods div.schd-box').each((i, elem) => {
         tempData.push({
             date: $(elem).find('div.schd-tbl div.start-date').text().substr(1, 10),
-            site: 'https://pohod-v-gory.com',
+            site: 'Pohod-v-gory.com',
             title: $(elem).find('div.schd-name a').text().replace(/\r?\n/g, ""),
             link: URL + $(elem).find('div.schd-name a').attr('href'),
             price: getPriceOnlyNum($(elem).find('div.schd-price').text().replace(/\s/g, ''), cur),

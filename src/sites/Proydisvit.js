@@ -4,7 +4,7 @@ const luxon = require('luxon')
 var DateTime = luxon.DateTime
 const URL = 'https://proydisvit.com'
 const SHEDULE = '/shedule'
-
+/*
 async function getDataProydisvit(cur) {
 
     let curDate = ''
@@ -150,3 +150,4 @@ let getPriceOnlyNum = (price, cur) => {
 
     return parseInt(_price)
 }
+*/

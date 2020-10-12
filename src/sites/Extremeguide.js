@@ -17,7 +17,7 @@ async function getDataExtremeguide(cur) {
             link: URL + $(elem).find('td:nth-child(5) strong a').attr('href'),
             location: $(elem).find('td:nth-child(1)').text(),
             price: getPriceOnlyNum($(elem).find('td:nth-child(6)').text().replace(/\s/g, ''), cur),
-            site: URL
+            site: 'Extremeguide.pro'
         })
 
     })

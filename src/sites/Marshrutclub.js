@@ -21,7 +21,7 @@ async function getDataMarshrutclub(cur) {
                 duration: getDuration($(elem).find('td:nth-child(3) span.t_list_tl').text()),
                 location: $(elem).find('td:nth-child(2)').text(),
                 price: getPriceOnlyNum($(elem).find('td:nth-child(3) div.cal_right_bl span.prbl_new_price').text(), cur),
-                site: URL
+                site: "Marshrut-club.com"
             })
         }
 
@@ -117,6 +117,7 @@ function parseDay(str){
     }else{
         return '0' + day
     }
+
 }
 
 let getPriceOnlyNum = (price, cur) => {

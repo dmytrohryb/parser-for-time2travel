@@ -15,7 +15,7 @@ async function getDataGreentravel(cur) {
                 date: parseDay($(elem).find('td:nth-child(1).nobr').text()) + '.' + curDate,
                 title: $(elem).find('td:nth-child(3) a').text(),
                 link: URL + $(elem).find('td:nth-child(3) a').attr('href'),
-                site: URL.substr(0, 24),
+                site: 'Green-travel.biz',
                 location: $(elem).find('td:nth-child(4).nobr').text(),
                 duration: getDuration($(elem).find('td:nth-child(5)').text()),
                 price: getPriceOnlyNum($(elem).find('td:nth-child(8).nobr').text(), cur)
